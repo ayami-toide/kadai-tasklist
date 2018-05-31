@@ -1,12 +1,15 @@
-@extends（ 'layouts.app'）
+@extends('layouts.app')
 
-@section（ 'content'）
+@section('content')
 
-<h1>id = {{ $kadai->id }} のメッセージ詳細ページ</h1>
+    <h1>id = {{ $kadai->id }} のメッセージ詳細ページ</h1>
 
-    <p>{{ $kadai->content }}</p>
-     {!! link_to_route('kadais.edit', 'このメッセージを編集', ['id' => $kadai->id]) !!}
-     {!! Form::model($kadai, ['route' => ['kadais.destroy', $kadai->id], 'method' => 'delete']) !!}
+    <p>タイトル: {{ $kadai->status }}</p>
+    <p>メッセージ: {{ $kadai->content }}</p>
+
+    {!! link_to_route('tasks.edit', 'このメッセージ編集', ['id' => $kadai->id]) !!}
+
+    {!! Form::model($kadai, ['route' => ['tasks.destroy', $kadai->id], 'method' => 'delete']) !!}
         {!! Form::submit('削除') !!}
     {!! Form::close() !!}
 

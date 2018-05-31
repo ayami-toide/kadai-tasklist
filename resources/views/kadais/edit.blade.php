@@ -1,13 +1,13 @@
-@extends（ 'layouts.app'）
+@extends('layouts.app')
 
-@section（ 'content'）
+@section('content')
 
-<！ - 各ページのコンテンツをここに書き込む - >
+    <h1>id: {{ $kadai->id }} のメッセージ編集ページ</h1>
 
+    {!! Form::model($kadai, ['route' => ['tasks.update', $kadai->id], 'method' => 'put']) !!}
 
-<h1>id: {{ $kadai->id }} のメッセージ編集ページ</h1>
-
-    {!! Form::model($kadai, ['route' => ['kadais.update', $kadai->id], 'method' => 'put']) !!}
+        {!! Form::label('status', 'タイトル:') !!}
+        {!! Form::text('status') !!}
 
         {!! Form::label('content', 'メッセージ:') !!}
         {!! Form::text('content') !!}
@@ -17,3 +17,7 @@
     {!! Form::close() !!}
 
 @endsection
+
+
+
+

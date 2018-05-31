@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Task; 
 
-class KadaisController extends Controller
+class kadaisController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,7 +29,7 @@ class KadaisController extends Controller
      */
     public function create()
     {
-         $kadai = new Kadai;
+         $kadai = new Task;
 
         return view('kadais.create', [
             'kadai' => $kadai,
@@ -43,8 +43,16 @@ class KadaisController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {
-        $kadai = new Kadai;
+        
+        $this->validate($request, [
+            'status' => 'required|max:191',   // add
+            'content' => 'required|max:191',
+        ]);
+
+
+        $kadai = new Task;
         $kadai->content = $request->content;
         $kadai->save();
 
@@ -59,7 +67,7 @@ class KadaisController extends Controller
      */
     public function show($id)
     {
-         $kadai = Kadai::find($id);
+         $kadai = Task::find($id);
 
         return view('kadais.show', [
             'kadai' => $kadai,
@@ -74,7 +82,7 @@ class KadaisController extends Controller
      */
     public function edit($id)
     {
-        $kadai = Kadai::find($id);
+        $kadai = Task::find($id);
 
         return view('kadais.edit', [
             'kadai' => $kadai,
@@ -90,7 +98,12 @@ class KadaisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $kadai= Kadai::find($id);
+        $this->validate($request, [
+            'status' => 'required|max:191',   // add
+            'content' => 'required|max:191',
+        ]);
+        
+        $kadai= Task::find($id);
         $kadai->content = $request->content;
         $kadai->save();
 
@@ -105,7 +118,7 @@ class KadaisController extends Controller
      */
     public function destroy($id)
     {
-        $kadai = Kadai::find($id);
+        $kadai = Task::find($id);
         $kadai->delete();
 
         return redirect('/');

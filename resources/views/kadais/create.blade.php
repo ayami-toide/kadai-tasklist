@@ -1,19 +1,24 @@
-@extends（ 'layouts.app'）
+@extends('layouts.app')
 
-@section（ 'content'）
+@section('content')
+
+    <h1>メッセージ新規作成ページ</h1>
 
 
-<h1>メッセージ新しい作成ページ</h1>
+    {!! Form::model($kadai, ['route' => 'tasks.store']) !!}
 
-    {!! Form :: model（$kadai、['route' => 'kadais.store']）!!}
+        {!! Form::label('status', 'タイトル:') !!}
+        {!! Form::text('status') !!}
 
-        {!! Form :: label（ 'content'、 'メッセージ：'）!!}
-        {!! Form :: text（ 'content'）!!}
+        {!! Form::label('content', 'メッセージ:') !!}
+        {!! Form::text('content') !!}
 
-        {!! Form :: submit（ '投稿'）!!}
+        {!! Form::submit('投稿') !!}
 
-    {!! Form :: close（）!!}
-
+    {!! Form::close() !!}
 
 @endsection
+
+
+
 
