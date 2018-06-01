@@ -106,6 +106,7 @@ class kadaisController extends Controller
         
         $kadai= task::find($id);
         $kadai->content = $request->content;
+        $kadai->status = $request->status;
         $kadai->save();
 
         return redirect('/');
