@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Task; 
+use App\task; 
 
 class kadaisController extends Controller
 {
@@ -15,7 +15,7 @@ class kadaisController extends Controller
      */
     public function index()
     {
-        $kadais = Task::all();
+        $kadais = task::all();
 
         return view('kadais.index', [
             'kadais' => $kadais,
@@ -29,7 +29,7 @@ class kadaisController extends Controller
      */
     public function create()
     {
-         $kadai = new Task;
+         $kadai = new task;
 
         return view('kadais.create', [
             'kadai' => $kadai,
@@ -47,13 +47,14 @@ class kadaisController extends Controller
     {
         
         $this->validate($request, [
-            'status' => 'required|max:191',   // add
+            'status' => 'required|max:10',   // add
             'content' => 'required|max:191',
         ]);
 
 
-        $kadai = new Task;
+        $kadai = new task;
         $kadai->content = $request->content;
+        $kadai->status = $request->status;
         $kadai->save();
 
         return redirect('/');
@@ -67,7 +68,7 @@ class kadaisController extends Controller
      */
     public function show($id)
     {
-         $kadai = Task::find($id);
+         $kadai = task::find($id);
 
         return view('kadais.show', [
             'kadai' => $kadai,
@@ -82,7 +83,7 @@ class kadaisController extends Controller
      */
     public function edit($id)
     {
-        $kadai = Task::find($id);
+        $kadai = task::find($id);
 
         return view('kadais.edit', [
             'kadai' => $kadai,
@@ -99,11 +100,11 @@ class kadaisController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'status' => 'required|max:191',   // add
+            'status' => 'required|max:10',   // add
             'content' => 'required|max:191',
         ]);
         
-        $kadai= Task::find($id);
+        $kadai= task::find($id);
         $kadai->content = $request->content;
         $kadai->save();
 
@@ -118,7 +119,7 @@ class kadaisController extends Controller
      */
     public function destroy($id)
     {
-        $kadai = Task::find($id);
+        $kadai = task::find($id);
         $kadai->delete();
 
         return redirect('/');
