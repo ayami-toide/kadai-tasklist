@@ -11,7 +11,7 @@
         </tr>
         <tr>
             <th>タイトル</th>
-            <td>{{ $kadai->title }}</td>
+            <td>{{ $kadai->status }}</td>
         </tr>
         <tr>
             <th>メッセージ</th>
@@ -26,4 +26,4 @@
         {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
     {!! Form::close() !!}
 
-@endsection
+@endsections

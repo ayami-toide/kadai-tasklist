@@ -9,8 +9,10 @@
     {!! Form::model($kadai, ['route' => ['tasks.update', $kadai->id], 'method' => 'put']) !!}
 
         <div class="form-group">
-                    {!! Form::label('t-3itle', 'タイトル:') !!}
-                    {!! Form::text('title', null, ['class' => 'form-control']) !!}
+                    {!! Form::label('status', 'タイトル:') !!}
+                    {!! Form::text('status', null, ['class' => 'form-control']) !!}
+        
+                    
                 </div>
         
                 <div class="form-group">

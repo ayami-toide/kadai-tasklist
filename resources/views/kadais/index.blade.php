@@ -17,7 +17,7 @@
                 @foreach ($kadais as $kadai)
                     <tr>
                         <td>{!! link_to_route('tasks.show', $kadai->id, ['id' => $kadai->id]) !!}</td>
-                        <td>{{ $kadai->title }}</td>
+                        <td>{{ $kadai->status }}</td>
                         <td>{{ $kadai->content }}</td>
                     </tr>
                 @endforeach
